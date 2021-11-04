@@ -1,5 +1,5 @@
-import surferCover from "../../../../assets/surfer.jpeg";
-import coachCover from "../../../../assets/coach.jpeg";
+import SurferCover from "../../../../assets/surfer.jpeg";
+import CoachCover from "../../../../assets/coach.jpeg";
 
 export const PROFILES = {
   SURFER: "surfer",
@@ -8,17 +8,19 @@ export const PROFILES = {
 
 export const DASHBOARD_CARDS = [
   {
-    type: PROFILES.SURFER,
-    cover: surferCover,
+    profile: PROFILES.SURFER,
+    cover: SurferCover,
     title: "Surfer",
     description:
       "Necesito una tabla, traje o alguien que me enseñe. Me gustaria ponerme en contacto con alguien que pueda brindarme alguno de estos elementos.",
+    table: "Alquilar tabla",
   },
   {
-    type: PROFILES.COACH,
-    cover: coachCover,
+    profile: PROFILES.COACH,
+    cover: CoachCover,
     title: "Coach",
     description:
       "Tengo para alquilar tablas, trajes o enseño a surfear. Estoy a disposicion para aquellos que esten buscando alguno de estos elementos.",
+    table: "Ofrecer tabla",
   },
 ];
