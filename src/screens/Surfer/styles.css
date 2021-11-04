@@ -26,3 +26,12 @@
   opacity: 1;
   cursor: pointer;
 }
+
+.loader-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  flex: 1;
+  transition: opacity 0.2s ease 0s;
+  opacity: 1;
+}

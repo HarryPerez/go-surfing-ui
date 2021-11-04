@@ -8,7 +8,9 @@ import {
 import { Button } from "@mui/material";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import Loader from "react-loader-spinner";
 
+import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./styles.css";
 
 const StyledBackButton = styled(Button)`
@@ -47,8 +49,8 @@ function Surfer() {
         </StyledBackButton>
       </Link>
       <div className="surfer-dashboard-container">
-        <div className="surfer-map-container">
-          {location && (
+        {location ? (
+          <div className="surfer-map-container">
             <MyMapComponent
               isMarkerShown
               center={{
@@ -74,8 +76,18 @@ function Surfer() {
               }
               mapElement={<div style={{ height: "100%" }} />}
             />
-          )}
-        </div>
+          </div>
+        ) : (
+          <div className="loader-container">
+            <Loader
+              type="Puff"
+              color="black"
+              height={100}
+              width={100}
+              timeout={3000} //3 secs
+            />
+          </div>
+        )}
       </div>
     </div>
   );
