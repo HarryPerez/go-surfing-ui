@@ -1,9 +1,29 @@
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
 import GoogleButton from "react-google-button";
+import axios from "axios";
+
+import * as AppSliceActions from "../../appSlice";
 import "./styles.css";
 
 function Login() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const fetchAuthUser = async () => {
+    const response = await axios
+      .get("http://localhost:5000/api/v1/auth/user", { withCredentials: true })
+      .catch((error) => {
+        console.log("Not properly authenticated");
+      });
+
+    if (response && response.data) {
+      navigate("/home");
+      dispatch(AppSliceActions.setIsAthenticated(true));
+      dispatch(AppSliceActions.setAuthUser(response.data));
+    }
+  };
+
   const redirectToGoogleSSO = async () => {
     let timer = null;
     const googleLoginUrl = "http://localhost:5000/api/v1/login/google";
@@ -17,7 +37,7 @@ function Login() {
       timer = setInterval(() => {
         if (newWindow.closed) {
           console.log("Yay we are athenticated!!");
-          navigate("/home");
+          fetchAuthUser();
           if (timer) clearInterval(timer);
         }
       }, 500);

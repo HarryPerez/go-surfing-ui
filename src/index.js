@@ -7,23 +7,28 @@ import Login from "./screens/Login";
 import Surfer from "./screens/Surfer";
 import LoginSuccess from "./screens/LoginSuccess";
 import reportWebVitals from "./reportWebVitals";
-
+import { store } from "./store";
+import { Provider } from "react-redux";
 import "./index.css";
+
+require("dotenv").config();
 
 ReactDOM.render(
   <React.StrictMode>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/login/success" element={<LoginSuccess />} />
-        <Route path="/login/error">
-          Error al logearse. Porfavor intenta de nuevo mas tarde!
-        </Route>
-        <Route path="/surfer" element={<Surfer />} />
-        <Route path="/coach" element={<Surfer />} />
-      </Routes>
-    </BrowserRouter>
+    <Provider store={store}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Login />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/login/success" element={<LoginSuccess />} />
+          <Route path="/login/error">
+            Error al logearse. Porfavor intenta de nuevo mas tarde!
+          </Route>
+          <Route path="/surfer" element={<Surfer />} />
+          <Route path="/coach" element={<Surfer />} />
+        </Routes>
+      </BrowserRouter>
+    </Provider>
   </React.StrictMode>,
   document.getElementById("root")
 );
