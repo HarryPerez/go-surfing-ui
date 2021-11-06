@@ -14,7 +14,7 @@ function Dashboard() {
         >
           <div className="dashboard-card">
             <img
-              className="dashboard-card-cover"
+              className={dashboardOption.classnames}
               alt={dashboardOption.profile}
               src={dashboardOption.cover}
             />

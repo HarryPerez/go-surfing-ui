@@ -16,7 +16,7 @@ import "./styles.css";
 const StyledBackButton = styled(Button)`
   align-self: flex-start;
   height: 36px;
-  width: 64px;
+  width: 85px;
 `;
 
 const MyMapComponent = withScriptjs(
@@ -43,9 +43,12 @@ function Surfer() {
 
   return (
     <div className="surfer-container">
-      <Link to="/" style={{ textDecoration: "none", alignSelf: "flex-start" }}>
+      <Link
+        to="/home"
+        style={{ textDecoration: "none", alignSelf: "flex-start" }}
+      >
         <StyledBackButton className="back-button" variant="text">
-          Volver
+          Regresar
         </StyledBackButton>
       </Link>
       <div className="surfer-dashboard-container">
@@ -57,12 +60,13 @@ function Surfer() {
                 lat: location.latitude,
                 lng: location.longitude,
               }}
-              googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+              googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyAWAqaNNymBnj7ZPhKkWL4IUdR9iMdtVfI&v=3.exp&libraries=geometry,drawing,places"
               loadingElement={
                 <div
                   style={{
                     width: "100%",
                     height: "100%",
+                    borderRadius: "12px",
                   }}
                 />
               }
@@ -71,10 +75,13 @@ function Surfer() {
                   style={{
                     width: "100%",
                     height: "100%",
+                    borderRadius: "12px",
                   }}
                 />
               }
-              mapElement={<div style={{ height: "100%" }} />}
+              mapElement={
+                <div style={{ height: "100%", borderRadius: "12px" }} />
+              }
             />
           </div>
         ) : (

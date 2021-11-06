@@ -1,0 +1,21 @@
+.login-container {
+  align-items: center;
+  background-color: #f0e7d0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.login-image {
+  align-items: center;
+  box-shadow: inset 0 0 200px;
+  display: flex;
+  justify-content: center;
+  background-image: url("../../assets/lobru1.JPG");
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  width: 100%;
+}

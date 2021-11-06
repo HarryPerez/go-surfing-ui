@@ -1,0 +1,16 @@
+.login-success-container {
+  align-items: center;
+  background-color: #f0e7d0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 100vh;
+  text-align: center;
+}
+
+.login-success-title {
+  font: normal normal normal 28px/35px "open sans condensed", sans-serif;
+  color: rgb(56, 56, 56);
+  -webkit-font-smoothing: antialiased;
+  line-height: normal;
+}

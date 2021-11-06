@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./screens/Home";
+import Login from "./screens/Login";
 import Surfer from "./screens/Surfer";
+import LoginSuccess from "./screens/LoginSuccess";
 import reportWebVitals from "./reportWebVitals";
 
 import "./index.css";
@@ -12,7 +14,12 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Login />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/login/success" element={<LoginSuccess />} />
+        <Route path="/login/error">
+          Error al logearse. Porfavor intenta de nuevo mas tarde!
+        </Route>
         <Route path="/surfer" element={<Surfer />} />
         <Route path="/coach" element={<Surfer />} />
       </Routes>

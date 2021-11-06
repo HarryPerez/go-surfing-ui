@@ -20,6 +20,7 @@
   flex: 1;
   box-shadow: 0 0 32px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 6%);
   border-color: rgba(246, 246, 246, 0);
+  border-radius: 12px;
   border-style: solid;
   width: 340.5px;
   transition: opacity 0.2s ease 0s;
