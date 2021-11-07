@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import {
   withScriptjs,
   withGoogleMap,
@@ -10,6 +10,7 @@ import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
+import axios from "axios";
 
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./styles.css";
@@ -21,7 +22,7 @@ const StyledBackButton = styled(Button)`
 
 const MyMapComponent = withScriptjs(
   withGoogleMap((props) => (
-    <GoogleMap defaultZoom={16} defaultCenter={props.center}>
+    <GoogleMap defaultZoom={17} defaultCenter={props.center}>
       {props.isMarkerShown && <Marker position={props.center} />}
     </GoogleMap>
   ))
@@ -32,9 +33,21 @@ function Surfer() {
   const [location, setLocation] = useState();
   const user = useSelector((state) => state.app.authUser);
 
-  if (!user) {
-    navigate("/");
-  }
+  const saveUserLocation = useCallback(
+    async ({ latitude, longitude }) => {
+      await axios
+        .post("http://localhost:5000/api/v1/auth/user/location", {
+          withCredentials: true,
+          user,
+          latitude,
+          longitude,
+        })
+        .catch((error) => {
+          console.log("No se pudo guardar el la location del usuario");
+        });
+    },
+    [user]
+  );
 
   useEffect(() => {
     if ("geolocation" in navigator) {
@@ -43,9 +56,16 @@ function Surfer() {
           latitude: position.coords.latitude,
           longitude: position.coords.longitude,
         });
+        saveUserLocation({
+          latitude: position.coords.latitude,
+          longitude: position.coords.longitude,
+        });
       });
     }
-  }, []);
+    if (!user) {
+      navigate("/");
+    }
+  }, [user, navigate, saveUserLocation]);
 
   return (
     <div className="surfer-container">
