@@ -47,8 +47,6 @@ function Surfer() {
     }
   }, []);
 
-  console.log(process.env);
-
   return (
     <div className="surfer-container">
       {location ? (
