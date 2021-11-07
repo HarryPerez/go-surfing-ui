@@ -1,17 +1,33 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 import { DASHBOARD_CARDS } from "./constants";
 import "./styles.css";
 
 function Dashboard() {
+  const navigate = useNavigate();
+  const user = useSelector((state) => state.app.authUser);
+
+  const saveUserProfile = async (profile) => {
+    await axios
+      .post("http://localhost:5000/api/v1/auth/user/profile", {
+        withCredentials: true,
+        user,
+        profile,
+      })
+      .catch((error) => {
+        console.log("No se pudo guardar el tipo de perfil del usuario");
+      });
+
+    navigate(`/${profile}`);
+  };
+
   return (
     <div className="dashboard-container">
       {DASHBOARD_CARDS.map((dashboardOption) => (
-        <Link
-          to={`/${dashboardOption.profile}`}
-          style={{ textDecoration: "none" }}
-        >
+        <div onClick={() => saveUserProfile(dashboardOption.profile)}>
           <div className="dashboard-card">
             <img
               className={dashboardOption.classnames}
@@ -27,7 +43,7 @@ function Dashboard() {
               </span>
             </div>
           </div>
-        </Link>
+        </div>
       ))}
     </div>
   );
