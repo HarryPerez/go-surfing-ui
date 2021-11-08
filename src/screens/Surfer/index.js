@@ -36,7 +36,7 @@ function Surfer() {
   const saveUserLocation = useCallback(
     async ({ latitude, longitude }) => {
       await axios
-        .post("http://localhost:5000/api/v1/auth/user/location", {
+        .post(`${process.env.REACT_APP_BACKEND_URL}/auth/user/location`, {
           withCredentials: true,
           user,
           latitude,

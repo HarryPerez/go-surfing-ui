@@ -12,7 +12,9 @@ function Login() {
 
   const fetchAuthUser = async () => {
     const response = await axios
-      .get("http://localhost:5000/api/v1/auth/user", { withCredentials: true })
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/user`, {
+        withCredentials: true,
+      })
       .catch((error) => {
         console.log("Not properly authenticated");
       });
@@ -26,7 +28,7 @@ function Login() {
 
   const redirectToGoogleSSO = async () => {
     let timer = null;
-    const googleLoginUrl = "http://localhost:5000/api/v1/login/google";
+    const googleLoginUrl = `${process.env.REACT_APP_BACKEND_URL}/login/google`;
     const newWindow = window.open(
       googleLoginUrl,
       "_blank",

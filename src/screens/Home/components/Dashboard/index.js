@@ -12,7 +12,7 @@ function Dashboard() {
 
   const saveUserProfile = async (profile) => {
     await axios
-      .post("http://localhost:5000/api/v1/auth/user/profile", {
+      .post(`${process.env.REACT_APP_BACKEND_URL}/auth/user/profile`, {
         withCredentials: true,
         user,
         profile,
