@@ -1,21 +1,25 @@
-.surfer-container {
+.dashboard-container {
   align-items: center;
-  background-color: #f0e7d0;
+  background-image: url("../../assets/GoSurfingTemplate.png");
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: row;
   justify-content: center;
   min-height: 100vh;
-  padding: 0 80px;
   text-align: center;
+  justify-content: center;
 }
 
-.surfer-dashboard-container {
+.dashboard-dashboard-container {
+  align-items: center;
   display: flex;
-  height: 600px;
+  height: 615px;
   width: 940px;
+  flex-direction: column;
 }
 
-.surfer-map-container {
+.dashboard-map-container {
   display: flex;
   flex: 1;
   box-shadow: 0 0 32px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 6%);
@@ -26,6 +30,7 @@
   transition: opacity 0.2s ease 0s;
   opacity: 1;
   cursor: pointer;
+  width: 100%;
 }
 
 .loader-container {
@@ -49,17 +54,32 @@
   top: 20px;
 }
 
-.surfer-body-container {
+.dashboard-body-container {
+  align-items: center;
   flex-direction: row;
   display: flex;
   width: 100%;
   height: 100vh;
   justify-content: center;
-  align-items: center;
 }
 
 .profile-picture-container {
   right: 50px;
   position: absolute;
   top: 20px;
+}
+
+.marker {
+  border-radius: 50px;
+}
+
+.info-window-container {
+  background-color: #f0e7d0;
+}
+
+.info-window-body {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }

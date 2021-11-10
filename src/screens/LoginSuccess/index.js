@@ -7,11 +7,7 @@ function LoginSuccess() {
       window.close();
     }, 1000);
   });
-  return (
-    <div className="login-success-container">
-      <h2 className="login-success-title">Gracias por logearte!</h2>
-    </div>
-  );
+  return <div className="login-success-container" />;
 }
 
 export default LoginSuccess;

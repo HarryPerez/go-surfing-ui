@@ -1,9 +1,9 @@
 .home-container {
-  align-items: center;
-  background-color: #f0e7d0;
+  background-image: url("../../assets/GoSurfingTemplate.png");
+  background-size: cover;
+  background-position: center;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   min-height: 100vh;
   text-align: center;
+  justify-content: center;
 }

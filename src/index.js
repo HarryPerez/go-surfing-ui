@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Home from "./screens/Home";
 import Login from "./screens/Login";
-import Surfer from "./screens/Surfer";
+import Dashboard from "./screens/Dashboard";
 import LoginSuccess from "./screens/LoginSuccess";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
@@ -24,8 +24,7 @@ ReactDOM.render(
           <Route path="/login/error">
             Error al logearse. Porfavor intenta de nuevo mas tarde!
           </Route>
-          <Route path="/surfer" element={<Surfer />} />
-          <Route path="/coach" element={<Surfer />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </Provider>

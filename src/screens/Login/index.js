@@ -20,9 +20,9 @@ function Login() {
       });
 
     if (response && response.data) {
-      navigate("/home");
-      dispatch(AppSliceActions.setIsAthenticated(true));
       dispatch(AppSliceActions.setAuthUser(response.data));
+      dispatch(AppSliceActions.setIsAthenticated(true));
+      navigate("/home");
     }
   };
 

@@ -1,0 +1,74 @@
+.profile-container {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.profile-card {
+  display: flex;
+  flex: 1;
+  border-radius: 12px;
+  box-shadow: 0 0 32px rgb(0 0 0 / 4%), 0 8px 16px rgb(0 0 0 / 6%);
+  border-width: 1px;
+  border-color: rgba(246, 246, 246, 0);
+  border-style: solid;
+  height: 260.5px;
+  margin-bottom: 40px;
+  width: 820px;
+  transition: opacity 0.2s ease 0s;
+  opacity: 1;
+  cursor: pointer;
+}
+
+.profile-card-cover {
+  border-top-left-radius: 12px;
+  border-bottom-left-radius: 12px;
+  height: 260.5px;
+  width: 390px;
+}
+
+.profile-card-description {
+  display: flex;
+  background: white;
+  border-top-right-radius: 12px;
+  border-bottom-right-radius: 12px;
+  flex-direction: column;
+  align-items: center;
+  padding: 35px;
+  width: 390px;
+}
+
+.profile-card-description-title {
+  font: normal normal normal 28px/35px "open sans condensed", sans-serif;
+  color: rgb(56, 56, 56);
+  -webkit-font-smoothing: antialiased;
+  line-height: normal;
+}
+
+.profile-card-description-description {
+  font: normal normal normal 16px/20px "open sans", sans-serif;
+  color: rgb(56, 56, 56);
+  -webkit-font-smoothing: antialiased;
+  line-height: normal;
+}
+
+.profile-card-description:hover * {
+  color: rgb(158, 192, 159);
+}
+
+.profile-card-icon-container {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+}
+
+.card-icon {
+  height: 32px;
+  width: 32px;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: bottom;
+}

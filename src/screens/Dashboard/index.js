@@ -12,8 +12,15 @@ import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
 import axios from "axios";
 
+import CustomMarker from "./components/CustomMarker";
+import mapStyles from "./mapStyles.json";
+
 import "react-loader-spinner/dist/loader/css/react-spinner-loader.css";
 import "./styles.css";
+
+const defaultMapOptions = {
+  styles: mapStyles,
+};
 
 const StyledBackButton = styled(Button)`
   height: 36px;
@@ -22,15 +29,29 @@ const StyledBackButton = styled(Button)`
 
 const MyMapComponent = withScriptjs(
   withGoogleMap((props) => (
-    <GoogleMap defaultZoom={17} defaultCenter={props.center}>
-      {props.isMarkerShown && <Marker position={props.center} />}
+    <GoogleMap
+      defaultOptions={defaultMapOptions}
+      defaultZoom={16}
+      defaultCenter={props.center}
+    >
+      {props.isMarkerShown && (
+        <Marker
+          animation={window.google.maps.Animation.DROP}
+          position={props.center}
+        />
+      )}
+      {props.markers &&
+        props.markers.map((marker) => (
+          <CustomMarker key={marker.email} {...marker} />
+        ))}
     </GoogleMap>
   ))
 );
 
-function Surfer() {
+function Dashboard() {
   const navigate = useNavigate();
   const [location, setLocation] = useState();
+  const [users, setUsers] = useState();
   const user = useSelector((state) => state.app.authUser);
 
   const saveUserLocation = useCallback(
@@ -49,8 +70,30 @@ function Surfer() {
     [user]
   );
 
+  const getAllSurfers = useCallback(async () => {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/user/surfers`, {
+        withCredentials: true,
+      })
+      .catch((error) => {
+        console.log("No se pudieron obtener los surfers");
+      });
+    setUsers(response.data);
+  }, []);
+
+  const getAllCoaches = useCallback(async () => {
+    const response = await axios
+      .get(`${process.env.REACT_APP_BACKEND_URL}/auth/user/coaches`, {
+        withCredentials: true,
+      })
+      .catch((error) => {
+        console.log("No se pudieron obtener los coaches");
+      });
+    setUsers(response.data);
+  }, []);
+
   useEffect(() => {
-    if ("geolocation" in navigator) {
+    if (!location && "geolocation" in navigator) {
       navigator.geolocation.getCurrentPosition(function (position) {
         setLocation({
           latitude: position.coords.latitude,
@@ -65,23 +108,42 @@ function Surfer() {
     if (!user) {
       navigate("/");
     }
-  }, [user, navigate, saveUserLocation]);
+
+    if (user && !users) {
+      if (user?.profile === "surfer") {
+        getAllCoaches();
+      } else {
+        getAllSurfers();
+      }
+    }
+  }, [
+    user,
+    navigate,
+    saveUserLocation,
+    users,
+    getAllSurfers,
+    getAllCoaches,
+    location,
+  ]);
 
   return (
-    <div className="surfer-container">
+    <div className="dashboard-container">
       {location ? (
-        <div className="surfer-body-container">
+        <div className="dashboard-body-container">
+          <script
+            async
+            src={`https://maps.googleapis.com/maps/api/js?key=${process.env.REACT_APP_GOOGLE_MAP_API_KEY}&libraries=geometry&callback=initMap`}
+          ></script>
           <div className="link-container">
-            <Link to="/home" style={{ textDecoration: "none" }}>
-              <StyledBackButton className="back-button" variant="text">
-                Regresar
-              </StyledBackButton>
+            <Link to="/" style={{ textDecoration: "none" }}>
+              <StyledBackButton variant="text">LOGOUT</StyledBackButton>
             </Link>
           </div>
-          <div className="surfer-dashboard-container">
-            <div className="surfer-map-container">
+          <div className="dashboard-dashboard-container">
+            <div className="dashboard-map-container">
               <MyMapComponent
                 isMarkerShown
+                markers={users}
                 center={{
                   lat: location.latitude,
                   lng: location.longitude,
@@ -138,4 +200,4 @@ function Surfer() {
   );
 }
 
-export default Surfer;
+export default Dashboard;
