@@ -24,8 +24,10 @@ class CustomMarker extends Component {
 
   render() {
     const { showInfoWindow } = this.state;
-    const { latitude, longitude, profile, fullName, picture, email } =
+    const { latitude, longitude, profile, fullName, picture, email, phone } =
       this.props;
+
+    console.log(this.props);
 
     return (
       <Marker
@@ -51,6 +53,7 @@ class CustomMarker extends Component {
             fullName={fullName}
             picture={picture}
             email={email}
+            phone={phone}
           />
         )}
       </Marker>

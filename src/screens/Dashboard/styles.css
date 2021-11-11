@@ -83,3 +83,9 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.button-container {
+  left: 50px;
+  position: absolute;
+  top: 40px;
+}
