@@ -18,6 +18,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
+          <Route path="" element={<Login />} />
           <Route path="/" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/login/success" element={<LoginSuccess />} />
