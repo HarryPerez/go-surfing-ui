@@ -2,14 +2,16 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./screens/Home";
-import Login from "./screens/Login";
 import Dashboard from "./screens/Dashboard";
-import LoginSuccess from "./screens/LoginSuccess";
 import reportWebVitals from "./reportWebVitals";
 import { store } from "./store";
 import { Provider } from "react-redux";
 import "./index.css";
+
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
 require("dotenv").config();
 
@@ -18,14 +20,7 @@ ReactDOM.render(
     <Provider store={store}>
       <BrowserRouter>
         <Routes>
-          <Route path="" element={<Login />} />
-          <Route path="/" element={<Login />} />
-          <Route path="/home" element={<Home />} />
-          <Route path="/login/success" element={<LoginSuccess />} />
-          <Route path="/login/error">
-            Error al logearse. Porfavor intenta de nuevo mas tarde!
-          </Route>
-          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="*" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </Provider>
